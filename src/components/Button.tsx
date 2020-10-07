@@ -1,7 +1,7 @@
-import styled, { CSSObject } from 'styled-components'
-import { Theme } from '../foundation/theme'
+import styled from 'styled-components'
 
-const createBaseStyle = (theme: Theme): CSSObject => ({
+export const Button = styled.button(({ theme }) => ({
+  ...theme.textStyles.regular,
   color: theme.colors.text,
   display: 'inline-block',
   minWidth: '300px',
@@ -14,7 +14,4 @@ const createBaseStyle = (theme: Theme): CSSObject => ({
   '&: hover': {
     background: theme.colors.blockBackground,
   },
-})
-
-export const Button = styled.button(({ theme }) => createBaseStyle(theme))
-export const Link = styled.a(({ theme }) => createBaseStyle(theme))
+}))
