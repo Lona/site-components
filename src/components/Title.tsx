@@ -3,19 +3,19 @@ import styled from 'styled-components'
 import Spacer from './Spacer'
 import { Link } from './Link'
 
-const Container = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+const Container = styled(Link)({
+  display: 'flex',
+  alignItems: 'center',
+  textDecoration: 'none',
 
-  &:hover {
-    opacity: 0.85;
-  }
+  '&:hover': {
+    opacity: 0.85,
+  },
 
-  &:active {
-    opacity: 0.7;
-  }
-`
+  '&:active': {
+    opacity: 0.7,
+  },
+})
 
 const Label = styled.span(({ theme }) => ({
   fontSize: '16px',
@@ -23,13 +23,12 @@ const Label = styled.span(({ theme }) => ({
   color: theme.colors.text,
 }))
 
-const Image = styled.img({
-  width: '24px',
+const Icon = styled.div<{ src: string }>(({ src }) => ({
+  flex: '0 0 24px',
   height: '24px',
+  background: `url("${src}")`,
   backgroundSize: 'cover',
-  border: 'none',
-  outline: 'none',
-})
+}))
 
 export function Title({
   iconUrl,
@@ -42,7 +41,7 @@ export function Title({
 
   return (
     <Container href="/">
-      {hasIcon && <Image src={iconUrl!} />}
+      {hasIcon && <Icon src={iconUrl!} />}
       {hasIcon && <Spacer size={10} />}
       <Label>{children}</Label>
     </Container>

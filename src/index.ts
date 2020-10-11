@@ -6,6 +6,6 @@ export * from './components/Link'
 export * from './components/Select'
 export * from './components/Title'
 export * from './components/Sidebar'
+export * from './components/Page'
 
 export * from './utils/link'
-export * from './utils/tree'

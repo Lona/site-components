@@ -1,63 +1,64 @@
 import React from 'react'
 import styled from 'styled-components'
-import path from 'path'
-
-import { upperFirst } from '../utils/format'
-import { maxDepth, Tree } from '../utils/tree'
-import Spacer from './Spacer'
 import withSeparator from '../utils/separator'
-import { Title } from './Title'
 import { Link } from './Link'
-import { defaultTheme } from '../foundation/theme'
-const { colors, spacing, textStyles, sizes } = defaultTheme
+import Spacer from './Spacer'
+import { Title } from './Title'
 
-const Wrapper = styled.nav`
-  position: sticky;
-  display: flex;
-  height: 100vh;
-  overflow-y: scroll;
-  flex: 0 0 300px;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 0;
-  border-right: 1px solid ${colors.divider};
-  background: ${colors.background};
-  padding-bottom: 12px;
+export type SidebarItem = {
+  name: string
+  url: string
+  children: SidebarItem[]
+}
 
-  @media (max-width: ${sizes.breakpoints.medium}) {
-    flex: 0 0 260px;
-  }
-`
+const Container = styled.div(({ theme }) => ({
+  flex: '1 1 auto',
+  display: 'flex',
+  flexDirection: 'column',
+  borderRight: `1px solid ${theme.colors.divider}`,
+  background: theme.colors.background,
+  paddingBottom: '12px',
+  overflowY: 'auto',
+}))
 
-const InnerWrapper = styled.div`
-  overflow-y: auto;
-`
+const InnerWrapper = styled.div({
+  overflowY: 'auto',
+})
 
-const NavigationWrapper = styled.nav`
-  flex: 0 0 auto;
-`
+const NavigationWrapper = styled.nav({
+  flex: '0 0 auto',
+})
 
-const NavigationItem = styled(Link)<{ selected: boolean; depth: number }>`
-  ${(props) => (props.selected ? textStyles.regularBold : textStyles.regular)};
-  height: 36px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding-left: ${(props) =>
-    `${
-      spacing.sidebar.paddingHorizontal + Math.max(props.depth - 1, 0) * 20
-    }px`};
+const NavigationItemList = styled.ul({
+  display: 'flex',
+  flexDirection: 'column',
+})
 
-  &:hover {
-    background: ${colors.divider};
-  }
-`
+const TitleWrapper = styled.div(({ theme }) => ({
+  height: '64px',
+  display: 'flex',
+  alignItems: 'center',
+  paddingLeft: `${theme.spacing.sidebar.paddingHorizontal}px`,
+}))
+
+const NavigationItem = styled(Link)<{ selected: boolean; depth: number }>(
+  ({ theme, selected, depth }) => ({
+    ...(selected ? theme.textStyles.regularBold : theme.textStyles.regular),
+    height: '36px',
+    display: 'flex',
+    alignItems: 'center',
+    textDecoration: 'none',
+    paddingLeft: `${
+      theme.spacing.sidebar.paddingHorizontal + Math.max(depth - 1, 0) * 20
+    }px`,
+
+    '&:hover': {
+      background: theme.colors.divider,
+    },
+  })
+)
 
 const SubsectionHeader = styled.span<{ selected: boolean }>``
-
-function formatName(name: string) {
-  return upperFirst(decodeURIComponent(path.basename(name)))
-}
 
 const Bullet = styled.span({
   display: 'block',
@@ -69,43 +70,38 @@ const Bullet = styled.span({
 })
 
 interface SidebarItemProps {
-  item: Tree
+  item: SidebarItem
   depth?: number
   isSelected: (pathname: string) => boolean
   isDescendantSelected: (pathname: string) => boolean
 }
 
-const SidebarItem = ({
+const SidebarItemComponent = ({
   item: { name, children, url },
   depth = 0,
   isSelected,
   isDescendantSelected,
 }: SidebarItemProps) => {
-  const selected = isSelected(name)
-  const descendantSelected = isDescendantSelected(name)
+  const selected = isSelected(url)
+  const descendantSelected = isDescendantSelected(url)
 
   return (
     <>
-      <NavigationItem
-        href={`/${url || name}`}
-        selected={selected}
-        depth={depth}
-      >
+      <NavigationItem href={url} selected={selected} depth={depth}>
         {depth > 0 && (
           <>
             <Bullet />
             <Spacer size={10} />
           </>
         )}
-        <SubsectionHeader selected={selected}>
-          {formatName(name)}
-        </SubsectionHeader>
+        <SubsectionHeader selected={selected}>{name}</SubsectionHeader>
       </NavigationItem>
       {/* Always show the first level of descendants, but hide the rest unless something is selected */}
       {children.length > 0 && (depth === 0 || descendantSelected) ? (
         <ul>
           {children.map((file) => (
-            <SidebarItem
+            <SidebarItemComponent
+              key={file.name}
               item={file}
               depth={depth + 1}
               isSelected={isSelected}
@@ -118,8 +114,8 @@ const SidebarItem = ({
   )
 }
 
-interface SidebarProps {
-  fileTree: Tree
+export interface SidebarProps {
+  rootItem: SidebarItem
   title: string
   iconUrl?: string
   showArtifactsLink?: boolean
@@ -127,42 +123,43 @@ interface SidebarProps {
   isDescendantSelected: (pathname: string) => boolean
 }
 
+export function maxDepth(tree: SidebarItem): number {
+  function inner(tree: SidebarItem, depth: number): number {
+    if (tree.children.length === 0) return depth
+
+    return Math.max(...tree.children.map((child) => inner(child, depth + 1)))
+  }
+
+  return inner(tree, 1)
+}
+
 export function Sidebar({
-  fileTree,
+  rootItem,
   title,
   iconUrl,
   showArtifactsLink,
   isSelected,
   isDescendantSelected,
 }: SidebarProps) {
-  const files = fileTree.children
+  const files = rootItem.children
+  const rootDepth = maxDepth(rootItem)
 
-  // If we only have an index page, don't render the sidebar
-  if (files.length === 0) return null
-
-  const treeDepth = maxDepth(fileTree)
+  console.log('depth', rootDepth)
 
   return (
-    <Wrapper>
+    <Container>
       <div>
         <Spacer size={40} />
-        <div
-          style={{
-            height: '64px',
-            display: 'flex',
-            alignItems: 'center',
-            paddingLeft: `${spacing.sidebar.paddingHorizontal}px`,
-          }}
-        >
+        <TitleWrapper>
           <Title iconUrl={iconUrl}>{title}</Title>
-        </div>
+        </TitleWrapper>
         <Spacer size={16} />
         <InnerWrapper>
           <NavigationWrapper aria-label="Primary navigation">
-            <ul>
+            <NavigationItemList>
               {withSeparator(
                 files.map((file) => (
-                  <SidebarItem
+                  <SidebarItemComponent
                     key={file.name}
                     item={file}
                     isSelected={isSelected}
@@ -172,17 +169,17 @@ export function Sidebar({
                 (index) => (
                   <Spacer
                     key={`separator-${index}`}
-                    size={treeDepth > 1 ? 12 : 4}
+                    size={rootDepth > 1 ? 12 : 4}
                   />
                 )
               )}
-            </ul>
+            </NavigationItemList>
           </NavigationWrapper>
         </InnerWrapper>
         <Spacer size={16} />
       </div>
       {showArtifactsLink ? (
-        <SidebarItem
+        <SidebarItemComponent
           item={{
             name: 'Design System Artifacts',
             url: 'lona-design-artifacts',
@@ -192,6 +189,6 @@ export function Sidebar({
           isDescendantSelected={isDescendantSelected}
         />
       ) : null}
-    </Wrapper>
+    </Container>
   )
 }
