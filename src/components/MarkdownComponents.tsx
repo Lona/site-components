@@ -3,54 +3,54 @@ import styled, { CSSObject } from 'styled-components'
 import { Theme } from '../foundation/theme'
 import { Link } from './Link'
 
-export const code = styled.pre(({ theme }) => ({
+export const Code = styled.pre(({ theme }) => ({
   ...theme.textStyles.code,
   backgroundColor: theme.colors.divider,
   padding: '10px',
   marginBottom: '8px',
 }))
 
-export const inlineCode = styled.code(({ theme }) => ({
+export const InlineCode = styled.code(({ theme }) => ({
   ...theme.textStyles.code,
   backgroundColor: theme.colors.divider,
   padding: '1px 3px',
 }))
 
-export const h1 = styled.h1(({ theme }) => ({
+export const Heading1 = styled.h1(({ theme }) => ({
   ...theme.textStyles.heading1,
   marginBottom: '8px',
 }))
 
-export const h2 = styled.h2(({ theme }) => ({
+export const Heading2 = styled.h2(({ theme }) => ({
   ...theme.textStyles.heading2,
   marginBottom: '8px',
 
-  [`${h1} + &`]: {
+  [`${Heading1} + &`]: {
     marginTop: '24px',
   },
 }))
 
-export const h3 = styled.h3(({ theme }) => ({
+export const Heading3 = styled.h3(({ theme }) => ({
   ...theme.textStyles.heading3,
   marginBottom: '8px',
 
-  [`${h1} + &, ${h2} + &`]: {
+  [`${Heading1} + &, ${Heading2} + &`]: {
     marginTop: '24px',
   },
 }))
 
 const headingMargins = (theme: Theme): CSSObject => ({
-  [`${h1} + &, ${h2} + &, ${h3} + &`]: {
+  [`${Heading1} + &, ${Heading2} + &, ${Heading3} + &`]: {
     marginTop: '4px',
   },
 
-  [`& + ${h1}, & + ${h2}, & + ${h3}`]: {
+  [`& + ${Heading1}, & + ${Heading2}, & + ${Heading3}`]: {
     marginTop: '24px',
     marginBottom: '8px',
   },
 })
 
-export const p = styled.p(({ theme }) => ({
+export const Paragraph = styled.p(({ theme }) => ({
   ...theme.textStyles.regular,
 
   marginBottom: '8px',
@@ -58,12 +58,12 @@ export const p = styled.p(({ theme }) => ({
   ...headingMargins(theme),
 }))
 
-const Anchor = styled(Link)(({ theme }) => ({
+export const InlineLink = styled(Link)(({ theme }) => ({
   ...theme.textStyles.regular,
   color: theme.colors.editableText,
 }))
 
-const PageLink = styled(Link)(({ theme }) => ({
+export const PageLink = styled(Link)(({ theme }) => ({
   ...theme.textStyles.regular,
   fontWeight: 500,
   color: theme.colors.editableText,
@@ -87,17 +87,17 @@ const PageLink = styled(Link)(({ theme }) => ({
     whiteSpace: 'pre',
   },
 
-  [`& + ${h1}, & + ${h2}, & + ${h3}`]: {
+  [`& + ${Heading1}, & + ${Heading2}, & + ${Heading3}`]: {
     marginTop: '30px',
   },
 }))
 
-export const thematicBreak = styled.hr({})
+export const ThematicBreak = styled.hr({})
 
-export const a = (props: React.HTMLAttributes<HTMLAnchorElement>) => {
+export const Anchor = (props: React.HTMLAttributes<HTMLAnchorElement>) => {
   const isPage = (props.className || '').split(' ').includes('page')
 
-  return isPage ? <PageLink {...props} /> : <Link {...props} />
+  return isPage ? <PageLink {...props} /> : <InlineLink {...props} />
 }
 
 const TokenBlock = styled.div(({ theme }) => ({
@@ -156,7 +156,7 @@ const TokenDetails = styled.div(({ theme }) => ({
   },
 }))
 
-export const div = (props: {
+export const Div = (props: {
   className?: string
   'data-color'?: string
   'data-fontFamily'?: string
@@ -255,4 +255,16 @@ export const div = (props: {
   }
 
   return <div {...props} />
+}
+
+export const MarkdownComponents = {
+  code: Code,
+  inlineCode: InlineCode,
+  h1: Heading1,
+  h2: Heading2,
+  h3: Heading3,
+  p: Paragraph,
+  a: Anchor,
+  thematicBreak: ThematicBreak,
+  div: Div,
 }

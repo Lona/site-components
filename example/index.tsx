@@ -1,17 +1,24 @@
+import {
+  Anchor,
+  Button,
+  Code,
+  defaultTheme,
+  Heading1,
+  Heading2,
+  Heading3,
+  InlineCode,
+  Link,
+  LinkContext,
+  LinkProps,
+  Page,
+  Paragraph,
+  Select,
+  SidebarItem,
+  ThematicBreak,
+} from '@lona/site-components'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from 'styled-components'
-import {
-  defaultTheme,
-  Button,
-  Link,
-  Select,
-  LinkContext,
-  SidebarItem,
-  LinkProps,
-  Page,
-  MarkdownComponents,
-} from '@lona/site-components'
 
 const tree: SidebarItem = {
   name: 'Home',
@@ -50,33 +57,25 @@ function App() {
             pathname === '/page1' || pathname === '/page4'
           }
         >
-          <MarkdownComponents.h1>Heading 1</MarkdownComponents.h1>
-          <MarkdownComponents.p>
-            Paragraph with{' '}
-            <MarkdownComponents.a>normal link</MarkdownComponents.a>
-          </MarkdownComponents.p>
-          <MarkdownComponents.a className="page">
-            Page Link 1
-          </MarkdownComponents.a>
-          <MarkdownComponents.a className="page">
-            Page Link 2
-          </MarkdownComponents.a>
-          <MarkdownComponents.h2>Heading 2</MarkdownComponents.h2>
-          <MarkdownComponents.p>Paragraph</MarkdownComponents.p>
-          <MarkdownComponents.h3>Heading 3</MarkdownComponents.h3>
-          <MarkdownComponents.p>
-            Paragraph with{' '}
-            <MarkdownComponents.inlineCode>
-              inline code
-            </MarkdownComponents.inlineCode>
-          </MarkdownComponents.p>
-          <MarkdownComponents.code>Code block</MarkdownComponents.code>
-          <MarkdownComponents.p>Paragraph</MarkdownComponents.p>
-          <MarkdownComponents.h2>Other Components</MarkdownComponents.h2>
+          <Heading1>Heading 1</Heading1>
+          <Paragraph>
+            Paragraph with <Anchor>normal link</Anchor>
+          </Paragraph>
+          <Anchor className="page">Page Link 1</Anchor>
+          <Anchor className="page">Page Link 2</Anchor>
+          <Heading2>Heading 2</Heading2>
+          <Paragraph>Paragraph</Paragraph>
+          <Heading3>Heading 3</Heading3>
+          <Paragraph>
+            Paragraph with <InlineCode>inline code</InlineCode>
+          </Paragraph>
+          <Code>Code block</Code>
+          <Paragraph>Paragraph</Paragraph>
+          <Heading2>Other Components</Heading2>
           <Button>Click me!</Button>
-          <MarkdownComponents.thematicBreak />
+          <ThematicBreak />
           <Link href="/">A link!</Link>
-          <MarkdownComponents.thematicBreak />
+          <ThematicBreak />
           <Select>
             <option>npm</option>
             <option>yarn</option>

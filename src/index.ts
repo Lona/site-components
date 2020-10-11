@@ -4,7 +4,7 @@ export * from './components/Button'
 export * from './components/Link'
 export * from './components/Select'
 
-export * as MarkdownComponents from './components/MarkdownComponents'
+export * from './components/MarkdownComponents'
 
 export * from './layout/Page'
 export * from './layout/PageTitle'
