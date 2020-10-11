@@ -10,7 +10,14 @@ const monospaceFontFamily = "Menlo, Monaco, Consolas, 'Courier New', monospace"
 // Scale: 1.25
 const typeScale = [48, 39, 31, 25, 20, 16, 12, 10, 8]
 
+const base: CSSObject = {
+  textRendering: 'optimizeLegibility',
+  '-webkit-font-smoothing': 'antialiased',
+  '-moz-osx-font-smoothing': 'grayscale',
+}
+
 export const heading1: CSSObject = {
+  ...base,
   fontFamily,
   fontSize: typeScale[0],
   lineHeight: 1.75,
@@ -19,6 +26,7 @@ export const heading1: CSSObject = {
 }
 
 export const heading2: CSSObject = {
+  ...base,
   fontFamily,
   fontSize: typeScale[2],
   lineHeight: 1.75,
@@ -27,6 +35,7 @@ export const heading2: CSSObject = {
 }
 
 export const heading3: CSSObject = {
+  ...base,
   fontFamily,
   fontSize: typeScale[4],
   lineHeight: 1.75,
@@ -35,6 +44,7 @@ export const heading3: CSSObject = {
 }
 
 export const regular = {
+  ...base,
   fontFamily,
   fontSize: typeScale[5],
   lineHeight: 1.75,
@@ -43,6 +53,7 @@ export const regular = {
 }
 
 export const small = {
+  ...base,
   fontFamily,
   fontSize: typeScale[6],
   lineHeight: 1.75,
@@ -56,6 +67,7 @@ export const regularBold = {
 }
 
 export const code = {
+  ...base,
   fontFamily: monospaceFontFamily,
   fontSize: '90%',
   lineHeight: 1.75,
