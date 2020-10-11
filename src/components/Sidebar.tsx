@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import withSeparator from '../utils/separator'
 import { Link } from './Link'
 import Spacer from './Spacer'
-import { Title } from './Title'
+import { PageTitle } from './PageTitle'
 
 export type SidebarItem = {
   name: string
@@ -144,14 +144,12 @@ export function Sidebar({
   const files = rootItem.children
   const rootDepth = maxDepth(rootItem)
 
-  console.log('depth', rootDepth)
-
   return (
     <Container>
       <div>
         <Spacer size={40} />
         <TitleWrapper>
-          <Title iconUrl={iconUrl}>{title}</Title>
+          <PageTitle iconUrl={iconUrl}>{title}</PageTitle>
         </TitleWrapper>
         <Spacer size={16} />
         <InnerWrapper>

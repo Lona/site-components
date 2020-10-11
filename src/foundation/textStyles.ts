@@ -39,7 +39,6 @@ export const regular = {
   lineHeight: 1.75,
   fontWeight: 400,
   color: colors.text,
-  // letterSpacing: 0.1
 }
 
 export const small = {

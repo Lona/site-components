@@ -5,9 +5,7 @@ import {
   defaultTheme,
   Button,
   Link,
-  Title,
   Select,
-  GlobalStyles,
   LinkContext,
   SidebarItem,
   LinkProps,
@@ -51,9 +49,6 @@ function App() {
             pathname === '/page1' || pathname === '/page4'
           }
         >
-          <Title iconUrl={'https://www.sourcenoteapp.com/favicon.ico'}>
-            Page content
-          </Title>
           <Button>Click me!</Button>
           <Link href="/">A link!</Link>
           <Select>

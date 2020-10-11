@@ -30,7 +30,7 @@ const Icon = styled.div<{ src: string }>(({ src }) => ({
   backgroundSize: 'cover',
 }))
 
-export function Title({
+export function PageTitle({
   iconUrl,
   children,
 }: {
