@@ -44,6 +44,7 @@ const TitleWrapper = styled.div(({ theme }) => ({
 const NavigationItem = styled(Link)<{ selected: boolean; depth: number }>(
   ({ theme, selected, depth }) => ({
     ...(selected ? theme.textStyles.regularBold : theme.textStyles.regular),
+    color: theme.colors.text,
     height: '36px',
     display: 'flex',
     alignItems: 'center',

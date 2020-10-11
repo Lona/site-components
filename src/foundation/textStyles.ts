@@ -3,6 +3,7 @@ import * as colors from './colors'
 
 const fontFamily =
   '-apple-system, BlinkMacSystemFont, San Francisco, Roboto, Segoe UI, Helvetica Neue, sans-serif'
+const monospaceFontFamily = "Menlo, Monaco, Consolas, 'Courier New', monospace"
 
 // https://type-scale.com/
 // Base size: 16px
@@ -52,4 +53,12 @@ export const small = {
 export const regularBold = {
   ...regular,
   fontWeight: 600,
+}
+
+export const code = {
+  fontFamily: monospaceFontFamily,
+  fontSize: '90%',
+  lineHeight: 1.75,
+  fontWeight: 500,
+  color: colors.text,
 }

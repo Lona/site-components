@@ -10,6 +10,7 @@ import {
   SidebarItem,
   LinkProps,
   Page,
+  MarkdownComponents,
 } from '@lona/site-components'
 
 const tree: SidebarItem = {
@@ -49,8 +50,33 @@ function App() {
             pathname === '/page1' || pathname === '/page4'
           }
         >
+          <MarkdownComponents.h1>Heading 1</MarkdownComponents.h1>
+          <MarkdownComponents.p>
+            Paragraph with{' '}
+            <MarkdownComponents.a>normal link</MarkdownComponents.a>
+          </MarkdownComponents.p>
+          <MarkdownComponents.a className="page">
+            Page Link 1
+          </MarkdownComponents.a>
+          <MarkdownComponents.a className="page">
+            Page Link 2
+          </MarkdownComponents.a>
+          <MarkdownComponents.h2>Heading 2</MarkdownComponents.h2>
+          <MarkdownComponents.p>Paragraph</MarkdownComponents.p>
+          <MarkdownComponents.h3>Heading 3</MarkdownComponents.h3>
+          <MarkdownComponents.p>
+            Paragraph with{' '}
+            <MarkdownComponents.inlineCode>
+              inline code
+            </MarkdownComponents.inlineCode>
+          </MarkdownComponents.p>
+          <MarkdownComponents.code>Code block</MarkdownComponents.code>
+          <MarkdownComponents.p>Paragraph</MarkdownComponents.p>
+          <MarkdownComponents.h2>Other Components</MarkdownComponents.h2>
           <Button>Click me!</Button>
+          <MarkdownComponents.thematicBreak />
           <Link href="/">A link!</Link>
+          <MarkdownComponents.thematicBreak />
           <Select>
             <option>npm</option>
             <option>yarn</option>

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { createContext, useContext } from 'react'
 
 export interface LinkProps {
-  href: string
+  href?: string
   className?: string
+  style?: CSSProperties
   children?: React.ReactNode
 }
 
