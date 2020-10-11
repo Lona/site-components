@@ -41,7 +41,6 @@ function App() {
   return (
     <LinkContext.Provider value={FakeLink}>
       <ThemeProvider theme={defaultTheme}>
-        <GlobalStyles />
         <Page
           title={'Home'}
           rootItem={tree}

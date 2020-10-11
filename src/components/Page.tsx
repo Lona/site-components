@@ -2,10 +2,11 @@ import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Sidebar, SidebarProps } from './Sidebar'
 
-const Container = styled.div({
+const Container = styled.div(({ theme }) => ({
+  ...theme.textStyles.regular,
   display: 'flex',
   flex: '1 1 auto',
-})
+}))
 
 const FixedSidebar = styled.nav(({ theme }) => ({
   position: 'fixed',

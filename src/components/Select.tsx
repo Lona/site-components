@@ -24,6 +24,7 @@ export const Select = styled.select(({ theme }) => {
     paddingRight: '30px',
     borderRadius: '3px',
     fontSize: '16px',
+    cursor: 'pointer',
 
     '&:hover': {
       backgroundColor: theme.colors.blockBackground,

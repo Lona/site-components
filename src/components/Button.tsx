@@ -11,6 +11,7 @@ export const Button = styled.button(({ theme }) => ({
   background: theme.colors.contentBackground,
   padding: '3px 20px',
   borderRadius: '3px',
+  cursor: 'pointer',
   '&: hover': {
     background: theme.colors.blockBackground,
   },
