@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import withSeparator from '../utils/separator'
-import { Link } from './Link'
-import Spacer from './Spacer'
+import { Link } from '../components/Link'
+import Spacer from '../components/Spacer'
 import { PageTitle } from './PageTitle'
 
 export type SidebarItem = {

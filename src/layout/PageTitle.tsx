@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import Spacer from './Spacer'
-import { Link } from './Link'
+import Spacer from '../components/Spacer'
+import { Link } from '../components/Link'
 
 const Container = styled(Link)({
   display: 'flex',
