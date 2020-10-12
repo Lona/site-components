@@ -147,36 +147,34 @@ export function Sidebar({
 
   return (
     <Container>
-      <div>
-        <Spacer size={40} />
-        <TitleWrapper>
-          <PageTitle iconUrl={iconUrl}>{title}</PageTitle>
-        </TitleWrapper>
-        <Spacer size={16} />
-        <InnerWrapper>
-          <NavigationWrapper aria-label="Primary navigation">
-            <NavigationItemList>
-              {withSeparator(
-                files.map((file) => (
-                  <SidebarItemComponent
-                    key={file.name}
-                    item={file}
-                    isSelected={isSelected}
-                    isDescendantSelected={isDescendantSelected}
-                  />
-                )),
-                (index) => (
-                  <Spacer
-                    key={`separator-${index}`}
-                    size={rootDepth > 1 ? 12 : 4}
-                  />
-                )
-              )}
-            </NavigationItemList>
-          </NavigationWrapper>
-        </InnerWrapper>
-        <Spacer size={16} />
-      </div>
+      <Spacer size={40} />
+      <TitleWrapper>
+        <PageTitle iconUrl={iconUrl}>{title}</PageTitle>
+      </TitleWrapper>
+      <Spacer size={16} />
+      <InnerWrapper>
+        <NavigationWrapper aria-label="Primary navigation">
+          <NavigationItemList>
+            {withSeparator(
+              files.map((file) => (
+                <SidebarItemComponent
+                  key={file.name}
+                  item={file}
+                  isSelected={isSelected}
+                  isDescendantSelected={isDescendantSelected}
+                />
+              )),
+              (index) => (
+                <Spacer
+                  key={`separator-${index}`}
+                  size={rootDepth > 1 ? 12 : 4}
+                />
+              )
+            )}
+          </NavigationItemList>
+        </NavigationWrapper>
+      </InnerWrapper>
+      <Spacer size={16} />
       {showArtifactsLink ? (
         <SidebarItemComponent
           item={{
