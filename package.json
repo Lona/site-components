@@ -1,6 +1,6 @@
 {
   "name": "@lona/site-components",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Components for Lona-generated websites",
   "main": "lib/index.js",
   "files": [
