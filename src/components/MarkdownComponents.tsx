@@ -101,13 +101,16 @@ export const PageLink = styled(Link)(({ theme }) => ({
 
 export const ThematicBreak = styled.hr({})
 
-export const Anchor = (props: React.HTMLAttributes<HTMLAnchorElement>) => {
+export type AnchorProps = React.DetailedHTMLProps<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+> & {
+  class?: string
+}
+
+export const Anchor = (props: AnchorProps) => {
   // Handle html "class" to support both markdown and mdx
-  const { class: elementClass, ...rest } = props as React.HTMLAttributes<
-    HTMLAnchorElement
-  > & {
-    class?: string
-  }
+  const { class: elementClass, ...rest } = props
 
   const isPage =
     rest.className?.split(' ').includes('page') ||
