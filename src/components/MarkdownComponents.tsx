@@ -63,6 +63,13 @@ export const InlineLink = styled(Link)(({ theme }) => ({
   color: theme.colors.editableText,
 }))
 
+export const Image = styled.img(({ theme }) => ({
+  maxWidth: '100%',
+  marginBottom: '8px',
+
+  ...headingMargins(theme),
+}))
+
 export const PageLink = styled(Link)(({ theme }) => ({
   ...theme.textStyles.regular,
   fontWeight: 500,
@@ -276,4 +283,5 @@ export const MarkdownComponents = {
   a: Anchor,
   thematicBreak: ThematicBreak,
   div: Div,
+  img: Image,
 }

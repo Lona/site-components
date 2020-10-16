@@ -15,6 +15,7 @@ import {
   Select,
   SidebarItem,
   ThematicBreak,
+  Image,
 } from '@lona/site-components'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -58,6 +59,7 @@ function App() {
           }
         >
           <Heading1>Heading 1</Heading1>
+          <Image src="https://images.unsplash.com/photo-1581888227599-779811939961?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&h=500&q=80" />
           <Paragraph>
             Paragraph with <Anchor>normal link</Anchor>
           </Paragraph>
