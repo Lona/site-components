@@ -95,9 +95,18 @@ export const PageLink = styled(Link)(({ theme }) => ({
 export const ThematicBreak = styled.hr({})
 
 export const Anchor = (props: React.HTMLAttributes<HTMLAnchorElement>) => {
-  const isPage = (props.className || '').split(' ').includes('page')
+  // Handle html "class" to support both markdown and mdx
+  const { class: elementClass, ...rest } = props as React.HTMLAttributes<
+    HTMLAnchorElement
+  > & {
+    class?: string
+  }
 
-  return isPage ? <PageLink {...props} /> : <InlineLink {...props} />
+  const isPage =
+    rest.className?.split(' ').includes('page') ||
+    elementClass?.split(' ').includes('page')
+
+  return isPage ? <PageLink {...rest} /> : <InlineLink {...rest} />
 }
 
 const TokenBlock = styled.div(({ theme }) => ({

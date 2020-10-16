@@ -62,7 +62,7 @@ function App() {
             Paragraph with <Anchor>normal link</Anchor>
           </Paragraph>
           <Anchor className="page">Page Link 1</Anchor>
-          <Anchor className="page">Page Link 2</Anchor>
+          <Anchor {...{ class: 'page' }}>Page Link 2</Anchor>
           <Heading2>Heading 2</Heading2>
           <Paragraph>Paragraph</Paragraph>
           <Heading3>Heading 3</Heading3>
