@@ -35,10 +35,11 @@ const NavigationItemList = styled.ul({
 })
 
 const TitleWrapper = styled.div(({ theme }) => ({
-  height: '64px',
+  minHeight: '64px',
   display: 'flex',
   alignItems: 'center',
   paddingLeft: `${theme.spacing.sidebar.paddingHorizontal}px`,
+  paddingRight: `${theme.spacing.small}px`,
 }))
 
 const NavigationItem = styled(Link)<{ selected: boolean; depth: number }>(
@@ -52,6 +53,7 @@ const NavigationItem = styled(Link)<{ selected: boolean; depth: number }>(
     paddingLeft: `${
       theme.spacing.sidebar.paddingHorizontal + Math.max(depth - 1, 0) * 20
     }px`,
+    paddingRight: `${theme.spacing.small}px`,
 
     '&:hover': {
       background: theme.colors.divider,

@@ -4,6 +4,7 @@ import Spacer from '../components/Spacer'
 import { Link } from '../components/Link'
 
 const Container = styled(Link)({
+  flex: '1 1 auto',
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
@@ -18,6 +19,7 @@ const Container = styled(Link)({
 })
 
 const Label = styled.span(({ theme }) => ({
+  flex: '1 1 auto',
   fontSize: '16px',
   fontWeight: 500,
   color: theme.colors.text,
